@@ -68,7 +68,8 @@
             <div class="input-group ticket-class ">
                 <div>
                     <label for=" ">Economy ($100)</label>
-                    <input id="ecoclass-quantity" class="inp-width" type="number" name=" " value="0" onkeyup="validateOnKeypress('ecoclass-quantity')">
+                    <input id="ecoclass-quantity" class="inp-width" type="number" name=" " value="0"
+                        onkeyup="validateOnKeypress('ecoclass-quantity')">
                 </div>
                 <div class="plus-minus-btn">
                     <p>
@@ -107,7 +108,7 @@
                 </div>
             </div>
             <button type="submit" class="btn-style" data-toggle="modal" data-target="#exampleModalCenter"
-                onclick="isEmptyBooking()">Book Now</button>
+                onclick="sendDataToModal()">Book Now</button>
         </div>
 
         <div class="booking-content">
@@ -136,7 +137,7 @@
     </div>
 
     <script>
-        function isEmptyBooking() {
+        function sendDataToModal() {
             calculateTotal();
             document.getElementById('total-amount').innerText = document.getElementById('total-cost').innerText;
         }
@@ -169,8 +170,13 @@
         function parseValue(id) {
             return parseInt(document.getElementById(id).value);
         }
+        // Validate ticket quantity on keypress for negative or floating value
         function validateOnKeypress(id) {
-            if (document.getElementById(id).value < 0) document.getElementById(id).value = 0;
+            const quantity = document.getElementById(id).value;
+            if (quantity < 0) document.getElementById(id).value = 0;
+            if (Math.round(quantity) != quantity) {
+                document.getElementById(id).value = Math.round(quantity);
+            }
         }
     </script>
 

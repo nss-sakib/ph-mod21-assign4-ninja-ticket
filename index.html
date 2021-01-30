@@ -137,11 +137,6 @@
     </div>
 
     <script>
-        // Send total cost to a modal section element
-        function sendDataToModal() {
-            calculateTotal();
-            document.getElementById('total-amount').innerText = document.getElementById('total-cost').innerText;
-        }
         // Update ticket quantity 
         function updateTicketQuantity(id, increaseQuantity) {
             const existingQuantity = parseValue(id);
@@ -166,6 +161,7 @@
             document.getElementById('ticket-cost').innerText = ticketCost;
             document.getElementById('tax').innerText = tax;
             document.getElementById('total-cost').innerText = totalCost;
+            document.getElementById('total-amount').innerText = totalCost;
         }
         // Parse String value into numerical
         function parseValue(id) {
@@ -180,6 +176,7 @@
             if (Math.round(quantity) != quantity) {
                 document.getElementById(id).value = Math.round(quantity);
             }
+            calculateTotal();
         }
     </script>
 

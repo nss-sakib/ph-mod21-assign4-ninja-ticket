@@ -93,7 +93,7 @@ button:hover{
     align-items: center;
 }
 .inp-width{
-    min-width: 250px;
+    min-width: 280px;
 }
 .plus-minus-btn{
     word-spacing: 15px;
@@ -114,6 +114,9 @@ button:hover{
     background: #F3F5FF;
     border-radius: 4px;
     margin: 10px 0;
+}
+.booking-form input:focus{
+    border: 3px solid skyblue;
 }
 .booking-form .inputs{
     display: grid;

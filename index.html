@@ -54,12 +54,13 @@
             <div class="input-group ticket-class">
                 <div>
                     <label for=" ">First Class ($150)</label>
-                    <input id="fclass-quantity" class="inp-width" type="number" name=" " value="0" min="0" max="100">
+                    <input id="fclass-quantity" class="inp-width" type="number" name=" " value="0"
+                        onkeyup="validateOnKeypress('fclass-quantity')">
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button onclick="controlTicketQuantity('fclass-quantity', true)">+</button>
-                        <button onclick="controlTicketQuantity('fclass-quantity', false)">-</button>
+                        <button onclick="updateTicketQuantity('fclass-quantity', true)">+</button>
+                        <button onclick="updateTicketQuantity('fclass-quantity', false)">-</button>
                     </p>
                 </div>
             </div>
@@ -67,13 +68,12 @@
             <div class="input-group ticket-class ">
                 <div>
                     <label for=" ">Economy ($100)</label>
-                    <input id="ecoclass-quantity" class="inp-width" type="number" name=" " value="0" min="0"
-                        max="100">
+                    <input id="ecoclass-quantity" class="inp-width" type="number" name=" " value="0" onkeyup="validateOnKeypress('ecoclass-quantity')">
                 </div>
                 <div class="plus-minus-btn">
                     <p>
-                        <button onclick="controlTicketQuantity('ecoclass-quantity', true)">+</button>
-                        <button onclick="controlTicketQuantity('ecoclass-quantity', false)">-</button>
+                        <button onclick="updateTicketQuantity('ecoclass-quantity', true)">+</button>
+                        <button onclick="updateTicketQuantity('ecoclass-quantity', false)">-</button>
                     </p>
                 </div>
             </div>
@@ -123,12 +123,6 @@
         aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <!-- <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Booking Successful!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div> -->
                 <div class="modal-body text-center">
                     <h4>E-Ticket Booking Successful!</h4>
                     <p>Your total payable amount: $<span id="total-amount"></span></p>
@@ -147,7 +141,7 @@
             document.getElementById('total-amount').innerText = document.getElementById('total-cost').innerText;
         }
         // Update ticket quantity 
-        function controlTicketQuantity(id, increaseQuantity) {
+        function updateTicketQuantity(id, increaseQuantity) {
             const existingQuantity = parseValue(id);
             var newQuantity = 0;
             if (increaseQuantity) {
@@ -174,6 +168,9 @@
         // Parse String value into numerical
         function parseValue(id) {
             return parseInt(document.getElementById(id).value);
+        }
+        function validateOnKeypress(id) {
+            if (document.getElementById(id).value < 0) document.getElementById(id).value = 0;
         }
     </script>
 
